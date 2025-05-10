@@ -1,44 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=M+PLUS+Rounded+1c&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-style: normal;
 }
 
-img {
-    height: 180px;
-    width: 160px;
+body {
+    min-height: 100vh;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
+    /* animation: gradientAnimation 15s ease infinite; */
+    /* background-size: 400% 400%; */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
-    animation: gradientAnimation 15s ease infinite;
+header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
-  
-form {
-    color: rgb(255, 255, 255);
-    font-weight: 900;
+
+.logo {
+    height: 120px;
+    width: 100px;
+}
+
+main {
     display: flex;
-    flex-direction: column;
-    align-items:start;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.form-container {
     background-color: #000000;
     border-radius: 30px;
-    padding: 20px;
-    margin: 30px;
-    width: 500px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin: 40px 0;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
 }
 
-button {
-    background-color: #9b28c5;
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #333;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -48,19 +68,162 @@ button {
     font-weight: 900;
 }
 
+.tab-button.active {
+    background-color: #9b28c5;
+}
+
+.tab-button:hover {
+    background-color: #7a219e;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 18px;
+}
+
 .input {
-    width: 500px;
-    height: 30px;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    background-color: #9b28c5;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+button:hover {
+    background-color: #7a219e;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+#qr-code {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+#nanolink {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#qr-download-btn, #nano-copy-btn {
+    background-color: #28a745;
+}
+
+#qr-download-btn:hover, #nano-copy-btn:hover {
+    background-color: #218838;
+}
+
+#qr-close-btn, #nano-close-btn {
+    background-color: #dc3545;
+}
+
+#qr-close-btn:hover, #nano-close-btn:hover {
+    background-color: #c82333;
 }
 
 @keyframes gradientAnimation {
     0% {
-      background-position: 0% 50%;
+        background-position: 0% 50%;
     }
     50% {
-      background-position: 100% 50%;
+        background-position: 100% 50%;
     }
     100% {
-      background-position: 0% 50%;
+        background-position: 0% 50%;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+
+    header {
+        top: 10px;
+        left: 10px;
+    }
+
+    .logo {
+        height: 80px;
+        width: 60px;
+    }
+
+    .form-container {
+        padding: 20px;
+        margin: 20px 0;
+        max-width: 90%;
+    }
+
+    .input {
+        height: 36px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
     }
 }

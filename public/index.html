@@ -4,16 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Quick-QR</title>
+    <title>Quick-QR & Nanolink</title>
 </head>
 <body>
-    <img src="images/logo_no-bg.png" alt="Logo">
-    <div>
-        <form action="POST">
-            <label for="text">Enter/Paste URL</label>
-            <input class="input" type="text" id="text" name="text" placeholder="https://example.com ....." required>
-            <button type="submit">Generate QR Code</button>
-        </form>
+    <header>
+        <img src="images/logo_no-bg.png" alt="Logo" class="logo">
+    </header>
+    <main>
+        <section class="form-container">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="qr">Generate QR Code</button>
+                <button class="tab-button" data-tab="nano">Generate Nanolink</button>
+            </div>
+            <div id="qr-form-container" class="tab-content active">
+                <form id="qr-form" action="/qr/generate" method="POST">
+                    <label for="qr-text">Enter/Paste URL for QR Code</label>
+                    <input class="input" type="text" id="qr-text" name="url" placeholder="https://example.com" required>
+                    <button type="submit">Generate QR Code</button>
+                </form>
+                <div id="qr-error-message" style="display: none; color: red; margin-top: 20px;"></div>
+            </div>
+            <div id="nano-form-container" class="tab-content">
+                <form id="nano-form" action="/nano/generate" method="POST">
+                    <label for="nano-text">Enter/Paste URL for Nanolink</label>
+                    <input class="input" type="text" id="nano-text" name="url" placeholder="https://example.com" required>
+                    <button type="submit">Generate Nanolink</button>
+                </form>
+                <div id="nano-error-message" style="display: none; color: red; margin-top: 20px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- QR code modal -->
+    <div id="qr-modal" class="modal">
+        <div class="modal-content">
+            <img id="qr-code" src="" alt="QR Code">
+            <div class="modal-buttons">
+                <button id="qr-download-btn">Download</button>
+                <button id="qr-close-btn">Close</button>
+            </div>
+        </div>
     </div>
+
+    <!-- Nanolink modal -->
+    <div id="nano-modal" class="modal">
+        <div class="modal-content">
+            <p>Your Nanolink:</p>
+            <input id="nanolink" type="text" readonly>
+            <div class="modal-buttons">
+                <button id="nano-copy-btn">Copy</button>
+                <button id="nano-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
